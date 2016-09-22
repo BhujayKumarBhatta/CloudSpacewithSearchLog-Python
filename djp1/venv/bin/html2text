@@ -1,0 +1,10 @@
+#!/home/cisco/workspace-python/djp1/venv/bin/python
+# EASY-INSTALL-ENTRY-SCRIPT: 'html2text==2015.11.4','console_scripts','html2text'
+__requires__ = 'html2text==2015.11.4'
+import sys
+from pkg_resources import load_entry_point
+
+if __name__ == '__main__':
+    sys.exit(
+        load_entry_point('html2text==2015.11.4', 'console_scripts', 'html2text')()
+    )

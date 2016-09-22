@@ -1,0 +1,68 @@
+
+<h1> Following servers were matched  for the Search ID  {{result.sid}} </h1>
+
+
+<div class="container">
+
+	<div class="div-right">
+		<div id="" style="overflow-x: scroll;width:100%;height:100%">
+		<p>Search Result for Search ID {{result.sid}}, click on server name to see the log</p>
+		<table >
+			{% for s in result.resultservers %} 
+			<tr> 
+			<td>
+			<a href="{% url 'get-server-log' s.id %}" > {{s.osinstance.name}} : {{s.osinstance.ip}}</a>
+			</td>
+			{% endfor %}
+		</table>
+		</div>
+	</div>
+
+	<div class="div-left">
+		<div id="" style="overflow-x: scroll;width:70%;height:100%">
+		<p>Click the links below to view Previous Searches </p>
+			<table>
+			{% for p in prev_searches %}
+			<tr><td>
+				<a href="{% url 'get-server-by-searchid' p.id %}" > 
+					SearchID:{{p.id}},By:{{p.searchedby}},{{p.searchdate}}</a>
+			</td></tr> 
+			
+			{% endfor %}
+			</table>
+			</div>
+	</div>
+
+
+</div>
+
+
+
+<style>
+   
+   table {font-size:10pt;width:100%;color:blue;border:0px solid black;}
+   td  {border:1px solid black;}
+   input {width:50;color:blue;font-size:8pt;width:60px}
+    .div-left{
+    float:left;
+    padding-left:10px;
+    margin-left:20px
+}
+.div-right{
+    float:right;
+    padding-right:10px;
+    margin-right:100px
+}
+.container{
+     
+    max-width:100%;
+    border:1px solid salmon;
+    
+    padding-top:5px;
+}
+
+.td-log {width:90%
+
+}
+   </style>
+

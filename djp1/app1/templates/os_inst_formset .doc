@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+ 
+<form action="" method="POST" >
+<div class="container">
+
+<div class="div-left">
+<h2> Define a date and time range</h2>
+<table id="tblserch" colspan="0" rfowspan="0">
+<tr> 
+ <td>Month</td>
+ <td><!-- input id ="xxx"  label = "Month" name= "month" 	type ="text" value = "ALL" /-->
+ <select  name="month">
+<option value="ALL" selected="selected" >ALL</option>
+<option value="May">May</option>
+<option value="Jun" >Jun</option>
+<option value="Jul" >Jul</option>
+<option value="Aug" >Aug</option>
+</select> </td>
+ </tr>
+ <tr> 
+ <td>Start Date</td>
+ <td><input id ="startdate"  label = "startdate" name= "startdate" 	type ="number" value = "1" /> </td>
+ <td>End Date</td>
+ <td><input id ="enddate"  label = "enddate" name= "enddate" 	type ="number" value = "31" /></td>
+ </tr>
+ <tr>
+ <td>Start Hour</td>
+ <td><input id ="starthour"  label = "starthour" name= "starthour" 	type ="number" value = "0" /></td>
+ <td>End Hour</td>
+ <td><input id ="endhour"  label = "endhour" name= "endhour" 	type ="number" value = "24" /></td>
+ </tr>
+ <tr>
+ <td>Start Minute</td>
+ <td><input id ="startminute"  label = "startminute" name= "startminute" 	type ="number" value = "0" /></td>
+ <td>End Minute</td>
+ <td><input id ="endminute"  label = "endminute" name= "endminute" 	type ="number" value = "60" /></td>
+ </tr>
+ <tr>
+ <td>Start Second</td>
+ <td><input id ="startsecond"  label = "startsecond" name= "startsecond" 	type ="number" value = "0" /></td>
+ <td>End Second</td>
+ <td><input id ="endsecond"  label = "endsecond" name= "endsecond" 	type ="number" value = "60" /></td>
+ </tr>
+ 
+ </table>
+
+<br>
+<div>
+List of Features
+<p>Admin Operation:- </p>
+<li> <a href="admin/app1/searchwords/">Define Keywords to be searched in a database - click here</a> </li>
+<li><a href="/admin/app1/osmasterdj/"> Define Various OS type and log files name( as of now only syslog equivallent)</a></li>
+<li><a href="/admin/app1/osinstancedj/">Enter Server Details in the server Master and its SSH port number</a></li>
+<p> Users Features: </p>
+<li>From the Search Screen Filter Month , Day  , Hour and Time duration</li>
+<li>Select the servers where search to be performed</li>
+<li>Search will be  done on each server's all log files including zip files</li>
+<li>Server wise list of search results will be shown</li>
+</div>
+<br>
+ <br><br>
+<input id ="select_server" type ="submit" value = "submit"  style="width: 110px"/> 
+
+</div > 
+
+<div class="div-right">
+<h2> Select servers to be analyzed </h2>
+ <div id="" style="overflow-y: scroll;width:100%">
+ {{ formset.management_form }}
+    <!-- table-->
+  {% for form in formset %}
+     {% csrf_token %}  
+        
+     <div>{{form.as_table}} </div>  
+     <!--  
+     <tr>
+     <td>{{ form.id.value}}</td>
+     <input name = "serverid" type="hidden" value= {{ form.id.value}} />     
+     <td>{{ form.name.value}}</td>
+     <input name = "name" type="hidden" value= {{ form.name.value}} />
+     <td>{{ form.ip.value}}</td>
+     <input name = "ip" type="hidden" value= {{ form.ip.value}} />
+     <td>{{ form.sshport.value}}</td>
+     <input name = "serversshport" type="hidden" value= {{ form.sshport.value}} />
+     <td>{{ form.selected}}</td>
+     </tr>
+     -->
+  {% endfor %}
+ <!--  /table -->
+ <div>
+ 
+</div>
+
+</div>
+  
+ 
+
+ 
+ <!-- button onclick="myFunction()" type="button">OK</button -->
+ 
+ </form>
+ 
+ </html>
+ 
+ 
+ 
+ <!-- tr>
+     <td>{{ form.name}}</td>
+     <td>{{ form.ip}}</td>
+     <td>{{ form.os.value}}</td>
+     <td>{{ form.selected}}</td>
+     </tr-->
+     
+   <style>
+   
+   table,td,tr,li,p {font-size:8pt;width:100;color:darkgreen;}
+   input {width:50;color:blue;font-size:8pt;width:60px}
+    .div-left{
+    float:left;
+    padding-left:10px;
+    margin-left:20px
+}
+.div-right{
+    float:right;
+    padding-right:10px;
+    margin-right:100px
+}
+.container{
+     
+    max-width:100%;
+    border:1px solid salmon;
+    
+    padding-top:5px;
+}
+   </style>
+   
+   <script>
+function myFunction() {
+	alert("test")
+    var inpObj = document.getElementById("enddate");
+	 
+    if (inpObj.value() > 30 ) 
+    {
+        alert("worg entry.")
+    }
+}
+</script>
