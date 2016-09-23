@@ -11,7 +11,7 @@
 			{% for s in result.resultservers %} 
 			<tr> 
 			<td>
-			<a href="{% url 'get-server-log' s.id %}" > {{s.osinstance.name}} : {{s.osinstance.ip}}</a>
+			<a href="{% url 'get-server-log' s.id %}" > {{s.name}} : {{s.ip}}</a>
 			</td>
 			{% endfor %}
 		</table>

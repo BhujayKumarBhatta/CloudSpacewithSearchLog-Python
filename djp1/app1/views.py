@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 from __future__ import absolute_import
 import sys
 import json
+from decimal import Decimal
 import paramiko
 import datetime
 from django.contrib.auth.decorators import login_required, permission_required
@@ -12,10 +13,11 @@ from django.http import HttpResponse
 from app1.forms import OSInstanceForm
 from django.forms import formset_factory,modelformset_factory,inlineformset_factory
 import socket
-from celery import Celery , shared_task
+from celery import Celery , shared_task , task
 from celery.result import AsyncResult
 #from djp1.djcelery import app
 from djp1.celery import app
+
 
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.renderers import JSONRenderer
@@ -27,6 +29,7 @@ from rest_framework import permissions
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
 from app1.serializers import OSInstanceDJSerial,OSMasterDJSerial,SearchWordsSerial,SearchIDSerial,ResultServerSerial,SearchLogs4Serial
+
 
 '''
 class JSONResponse(HttpResponse):
@@ -97,6 +100,7 @@ def FormSetOSinstVw(request):
 def get_Job_result(request,jobid):           
     job = AsyncResult(jobid,app=app)
     if job.ready():      
+        #data = json.dumps(job.result)
         data = job.result
         #d=json.dumps(data)
         context={"result":data,"prev_searches":SearchID.objects.all()}
@@ -119,7 +123,11 @@ def get_server_by_searchid(request,searchid):
     context={"result":data,"prev_searches":SearchID.objects.all()}
     return render (request,'seacrh_result_severwise.html',context)
 
-@app.task   
+@app.task 
+#@app.task(bind=True) 
+#@task(name='djp1.views.AnalyzeServer') 
+#@shared_task
+#@task
 def AnalyzeServer(uname,srvlst=[],tfltr={}):
     sid=SearchID(searchedby=uname) #'anonymous'
     sid.save()
@@ -143,8 +151,19 @@ def AnalyzeServer(uname,srvlst=[],tfltr={}):
         osi=OSInstanceDJ.objects.get(pk=server_id)
         c2=str(osi.os.logfilename)
         c=c1+" "+"'"+c2+"'"+" "+"'"+c3+"'"+" "+"'"+c4+"'"
-        store_srv_in_db=ResultServer(osinstance=osi,searchid=sid)
+        store_srv_in_db=ResultServer(osinstance=osi,searchid=sid,name=osi.name,ip=osi.ip)
+        #store_srv_in_db=ResultServer(osinstance=osi,searchid=sid)
         store_srv_in_db.save()
+        rs=sid.resultserver_set.all()
+        rsar=[]
+        rsdict={}
+        for r in rs:
+            rsdict['id']=r.id
+            rsdict['name']=r.name
+            rsdict['ip']=r.ip
+            rsar.append(rsdict)       
+            
+        #jrs=json.dumps(rs)
         #c='python serverlogparse.py'+' '+"'"+"/var/log/syslog*"+" "+"'["+'"'+"error"+'"]'+'{"'+""
         try:
             ssh.connect(server_name,port=server_ssh_port,timeout=1, username='dcim')
@@ -162,10 +181,12 @@ def AnalyzeServer(uname,srvlst=[],tfltr={}):
                 emsg='Analysis Failed due to '+'Exception Type :- '+str(e)                  
                 saved_log_in_db=SearchLogs4(rserver=store_srv_in_db,logline=emsg)
                 saved_log_in_db.save()
-                continue                
-    return {'sid':sid,'resultservers':sid.resultserver_set.all()}      
-
-
+                continue 
+                           
+    #return {'sid':sid,'resultservers':rs}      
+    #return {'sid':"123"}
+    zo= {'sid':sid.id,'resultservers':rsar}
+    return zo
 '''
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 API RELATED VIEWS STARTS HERE

@@ -6,7 +6,9 @@ from celery import Celery
 
 app = Celery('tasks',
              broker='amqp://',
-             backend='rpc://')
+             #backend='rpc://')
+app = Celery('tasks',
+             broker='amqp://')
 # Optional configuration, see the application user guide.
 
 

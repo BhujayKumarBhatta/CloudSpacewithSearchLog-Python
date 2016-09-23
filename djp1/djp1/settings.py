@@ -38,7 +38,11 @@ CELERY_RESULT_PERSISTENT = True
 #CELERY_RESULT_BACKEND = 'cache'
 #CELERY_CACHE_BACKEND = 'memory'
 CELERY_TASK_SERIALIZER = 'json'
+#CELERY_RESULT_SERIALIZER = 'pickle' # without this it was showing the resultserver is query result type 
+                                    # and hence it was not JSON serializable
+#CELERY_RESULT_SERIALIZER='json'
 #CELERY_TASK_RESULT_EXPIRES = 18000
+CELERY_IMPORTS = ('app1.views') # otherwise  task is only getting loaded from tasks.py 
 
 DEBUG = True
 
@@ -55,7 +59,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app1',
-    'celery',
+    #'celery',
+    'djp1.celery',
     'djcelery',
     'rest_framework'
 ]

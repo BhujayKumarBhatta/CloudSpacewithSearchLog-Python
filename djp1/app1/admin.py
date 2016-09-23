@@ -1,6 +1,7 @@
 from django.contrib import admin
 from app1.models import OSMasterDJ,OSInstanceDJ,SearchWords,SearchID,ResultServer,SearchLogs4
 
+
 # Register your models here.
 
 class OSMasterDJdeco(admin.ModelAdmin):

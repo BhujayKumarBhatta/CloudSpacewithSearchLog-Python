@@ -3,9 +3,10 @@ Created on Aug 6, 2016
 
 @author: cisco
 '''
+'''
 from __future__ import absolute_import
 
-from celery import shared_task
+from djp1.celery import shared_task
 
 
 @shared_task
@@ -22,3 +23,4 @@ def mul(x, y):
 def xsum(numbers):
     return sum(numbers)
 
+'''
