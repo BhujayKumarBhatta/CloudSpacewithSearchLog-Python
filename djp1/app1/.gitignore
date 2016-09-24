@@ -1,7 +1,0 @@
-/__init__.pyc
-/admin.pyc
-/models.pyc
-/serializers.pyc
-/tasks.pyc
-/views.pyc
-*.pyc
