@@ -1,1 +1,3 @@
-/venv/
+venv/*
+app1/migrations/*
+*.pyc
