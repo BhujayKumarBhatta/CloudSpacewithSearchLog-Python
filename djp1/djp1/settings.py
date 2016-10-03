@@ -104,7 +104,8 @@ DATABASES = {
     'default': {
         'ENGINE':'sql_server.pyodbc',
         'NAME':'Database1',
-        'HOST':'MSSQL',
+        'HOST':'MSSQL1',
+        'PORT':'9000',
         'USER':'mssql',
         'PASSWORD':'mssql123'
     }
