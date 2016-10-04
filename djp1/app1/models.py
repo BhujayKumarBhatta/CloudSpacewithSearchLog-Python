@@ -28,7 +28,7 @@ class SearchWords(models.Model):
 class SearchID(models.Model):
     searchedby=models.CharField(max_length=100)
     searchdate=models.DateTimeField(default=timezone.now)
-    created=models.DateTimeField(editable=False,default=timezone.now)        
+    created=models.DateTimeField(default=timezone.now)        
     def __unicode__(self):
         return str(self.id)
     
