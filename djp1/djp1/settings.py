@@ -103,7 +103,7 @@ WSGI_APPLICATION = 'djp1.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE':'sql_server.pyodbc',
-        'NAME':'Database1',
+        'NAME':'searchlog',
         'HOST':'MSSQL1',
         'PORT':'9000',
         'USER':'mssql',
