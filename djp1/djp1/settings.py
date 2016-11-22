@@ -100,16 +100,46 @@ WSGI_APPLICATION = 'djp1.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
 
+#DATABASES = {
+#    'default': {
+#        'ENGINE':'sql_server.pyodbc',
+#        'NAME':'searchlog',
+#        'HOST':'MSSQL1',
+#        'PORT':'9000',
+#        'USER':'mssql',
+#        'PASSWORD':'mssql123'
+#    }
+#}
+
 DATABASES = {
     'default': {
-        'ENGINE':'sql_server.pyodbc',
+        'ENGINE':'django.db.backend.mysqL',
         'NAME':'searchlog',
-        'HOST':'MSSQL1',
-        'PORT':'9000',
-        'USER':'mssql',
-        'PASSWORD':'mssql123'
+        'HOST':'MYSQL',
+        'PORT':'',
+        'USER':'mysql',
+        'PASSWORD':'mysql123'
     }
 }
+
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
 
 
 # Password validation
