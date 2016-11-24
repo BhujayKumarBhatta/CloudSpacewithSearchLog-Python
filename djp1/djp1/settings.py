@@ -107,7 +107,7 @@ WSGI_APPLICATION = 'djp1.wsgi.application'
 #        'HOST':'MSSQL1',
 #        'PORT':'9000',
 #        'USER':'mssql',
-#        'PASSWORD':'mssql123'
+#        'PASSWORD':'mysql123'
 #    }
 #}
 
