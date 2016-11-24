@@ -113,7 +113,7 @@ WSGI_APPLICATION = 'djp1.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE':'django.db.backends.mysqL',
+        'ENGINE':'django.db.backends.mysql',
         'NAME':'searchlog',
         'HOST':'localhost',
         'PORT':'3306',
