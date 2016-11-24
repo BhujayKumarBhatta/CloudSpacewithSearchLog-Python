@@ -55,7 +55,7 @@ app = Celery('djp1',
 
 # Create your views here.
 
-@login_required
+#@login_required
 def FormSetOSinstVw(request):
     FormSetOSinst=modelformset_factory(OSInstanceDJ,OSInstanceForm,extra=0)
     ctag = []
@@ -200,8 +200,8 @@ API RELATED VIEWS STARTS HERE
 
 @csrf_exempt
 @api_view(['GET', 'POST'])
-@authentication_classes((SessionAuthentication, BasicAuthentication))
-@permission_classes((IsAuthenticated,))
+#@authentication_classes((SessionAuthentication, BasicAuthentication))
+#@permission_classes((IsAuthenticated,))
 def Search_Screen_Api(request,format=json):
     """
     List of servers to be selected and search submission
@@ -339,7 +339,7 @@ def AnalyzeServerSerial(uname,srvlst=[],tfltr={}):
 
 @csrf_exempt
 @api_view(['GET', 'POST'])
-@authentication_classes((SessionAuthentication, BasicAuthentication))
+#@authentication_classes((SessionAuthentication, BasicAuthentication))
 #@permission_classes((IsAuthenticated,))
 def SearchApi(request):
     '''
