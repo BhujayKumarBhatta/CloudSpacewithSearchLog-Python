@@ -115,7 +115,7 @@ DATABASES = {
     'default': {
         'ENGINE':'django.db.backends.mysql',
         'NAME':'searchlog',
-        'HOST':'localhost',
+        'HOST':'mysqldb-server1',
         'PORT':'3306',
         'USER':'mysql',
         'PASSWORD':'mysql123'
