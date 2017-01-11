@@ -111,6 +111,7 @@ WSGI_APPLICATION = 'djp1.wsgi.application'
 #    }
 #}
 
+iiii
 DATABASES = {
     'default': {
         'ENGINE':'django.db.backends.mysql',
